@@ -1,0 +1,1 @@
+# i7-8700k---Z370-Gigabyte---EFI-Sonoma
