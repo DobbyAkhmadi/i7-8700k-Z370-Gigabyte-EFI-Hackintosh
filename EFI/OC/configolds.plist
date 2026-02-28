@@ -49,7 +49,23 @@
 				<key>Enabled</key>
 				<true/>
 				<key>Path</key>
+				<string>SSDT-PLUG.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string></string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
 				<string>SSDT-PMC.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string></string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>SSDT-EHCx_OFF.aml</string>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -117,7 +133,7 @@
 			<key>ProtectSecureBoot</key>
 			<false/>
 			<key>ProtectUefiServices</key>
-			<false/>
+			<true/>
 			<key>ProvideCustomSlide</key>
 			<true/>
 			<key>ProvideMaxSlide</key>
@@ -138,14 +154,35 @@
 	<dict>
 		<key>Add</key>
 		<dict>
+			<key>#PciRoot(0x0)/Pci(0x2,0x0)</key>
+			<dict>
+				<key>#AAPL,ig-platform-id</key>
+				<data>AACbPg==</data>
+				<key>AAPL,ig-platform-id</key>
+				<data>BwCbPg==</data>
+				<key>AAPL,slot-name</key>
+				<string>Built-In</string>
+				<key>framebuffer-patch-enable</key>
+				<data>AQAAAA==</data>
+				<key>framebuffer-stolenmem</key>
+				<data>AAAwAQ==</data>
+				<key>model</key>
+				<string>Intel UHD 630</string>
+			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
 				<key>AAPL,ig-platform-id</key>
 				<data>BwCbPg==</data>
 				<key>AAPL,slot-name</key>
 				<string>Built-In</string>
+				<key>device-id</key>
+				<data>mz4AAA==</data>
 				<key>model</key>
-				<string>Intel UHD Graphics 630</string>
+				<string>Intel UHD 630 (for computing tasks)</string>
+				<key>framebuffer-fbmem</key>
+				<data>AACQAA==</data>
+				<key>framebuffer-stolenmem</key>
+				<data>AAAwAQ==</data>
 			</dict>
 		</dict>
 		<key>Delete</key>
@@ -184,24 +221,6 @@
 				<true/>
 				<key>ExecutablePath</key>
 				<string>Contents/MacOS/VirtualSMC</string>
-				<key>MaxKernel</key>
-				<string></string>
-				<key>MinKernel</key>
-				<string></string>
-				<key>PlistPath</key>
-				<string>Contents/Info.plist</string>
-			</dict>
-			<dict>
-				<key>Arch</key>
-				<string>Any</string>
-				<key>BundlePath</key>
-				<string>CPUFriend.kext</string>
-				<key>Comment</key>
-				<string></string>
-				<key>Enabled</key>
-				<true/>
-				<key>ExecutablePath</key>
-				<string>Contents/MacOS/CPUFriend</string>
 				<key>MaxKernel</key>
 				<string></string>
 				<key>MinKernel</key>
@@ -340,7 +359,7 @@
 		<key>Quirks</key>
 		<dict>
 			<key>AppleCpuPmCfgLock</key>
-			<true/>
+			<false/>
 			<key>AppleXcpmCfgLock</key>
 			<true/>
 			<key>AppleXcpmExtraMsrs</key>
@@ -559,9 +578,9 @@
 				<key>SystemAudioVolume</key>
 				<data>Rg==</data>
 				<key>boot-args</key>
-				<string>alcid=1</string>
+				<string>-v keepsyms=1 debug=0x100 alcid=1 igfxonln=1 igfxfw=2</string>
 				<key>csr-active-config</key>
-				<data>ZwgAAA==</data>
+				<data>AwgAAA==</data>
 				<key>prev-lang:kbd</key>
 				<string>en-US:0</string>
 				<key>run-efi-updater</key>
@@ -633,7 +652,7 @@
 			<key>MaxBIOSVersion</key>
 			<false/>
 			<key>MLB</key>
-			<string>C02953200QXLNV98C</string>
+			<string>C02925104J9LNV98C</string>
 			<key>ProcessorType</key>
 			<integer>4105</integer>
 			<key>ROM</key>
@@ -645,9 +664,9 @@
 			<key>SystemProductName</key>
 			<string>iMac19,1</string>
 			<key>SystemSerialNumber</key>
-			<string>C02ZX9Y6JV3Q</string>
+			<string>C02YWZZGJV3Q</string>
 			<key>SystemUUID</key>
-			<string>B117FFDF-BF8E-45C6-8EDD-78FEC621D1C6</string>
+			<string>C72380C7-A147-4AC9-AA82-AFB9930EF044</string>
 		</dict>
 		<key>SMBIOS</key>
 		<dict>
@@ -666,7 +685,7 @@
 			<key>BoardProduct</key>
 			<string>Mac-AA95B1DDAB278B95</string>
 			<key>BoardSerialNumber</key>
-			<string>C02953200QXLNV98C</string>
+			<string>C02925104J9LNV98C</string>
 			<key>BoardType</key>
 			<integer>10</integer>
 			<key>BoardVersion</key>
@@ -676,7 +695,7 @@
 			<key>ChassisManufacturer</key>
 			<string></string>
 			<key>ChassisSerialNumber</key>
-			<string>C02ZX9Y6JV3Q</string>
+			<string>C02YWZZGJV3Q</string>
 			<key>ChassisType</key>
 			<integer>13</integer>
 			<key>ChassisVersion</key>
@@ -700,9 +719,9 @@
 			<key>SystemSKUNumber</key>
 			<string>System SKU#</string>
 			<key>SystemSerialNumber</key>
-			<string>C02ZX9Y6JV3Q</string>
+			<string>C02YWZZGJV3Q</string>
 			<key>SystemUUID</key>
-			<string>B117FFDF-BF8E-45C6-8EDD-78FEC621D1C6</string>
+			<string>C72380C7-A147-4AC9-AA82-AFB9930EF044</string>
 			<key>SystemVersion</key>
 			<string>1.0</string>
 		</dict>
