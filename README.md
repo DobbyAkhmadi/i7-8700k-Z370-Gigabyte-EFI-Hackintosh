@@ -1,36 +1,136 @@
-# i7 8700k Gigabyte Z370 Aorous 2.0 EFI Sonoma 14.3.1
+# Gigabyte Z370 AORUS 2.0 + i7-8700K Hackintosh (macOS Sonoma 14.3.1)
 
-This is the fully detailed guide on how to create a working Hackintosh machine using:
+A complete **OpenCore EFI configuration** for running **macOS Sonoma 14.3.1** on **Gigabyte Z370 AORUS 2.0** with **Intel Core i7-8700K** and **RX Vega 64**.
 
-:small_blue_diamond: MacOS Sonoma 14.3.1 <br />
-:small_blue_diamond: OpenCore 0.9.8 <br />
-:small_blue_diamond: Processor: Intel Core i 7 8700k <br />
-:small_blue_diamond: RAM: 32 GB 3200 Mhz <br />
-:small_blue_diamond: Graphics: NVIDIA GTX 760 2GB DDR5 (Zotac Reference) <br />
-:small_blue_diamond: SSD: ADATA 256 GB  <br />
-:small_blue_diamond: SMBIOS: iMacPro 19.1 2019 <br />
+This repository includes a ready-to-use **EFI folder**, configured and tested with **OpenCore 1.0.6**.
 
-This repository contains also EFI folder with all binaries produced meanwhile. The missing pieces might be however serial numbers or other hardware identifiers.
+> ⚠️ **Important**  
+> Serial numbers, MLB, and other hardware identifiers have been removed. You must generate your own SMBIOS before using this EFI.
 
-# Driver Working
+---
 
-:white_check_mark: MacOS Sonoma 14.3.1 <br />
-:white_check_mark: Processor: Processor: Intel Core i 7 8700k :love_letter: <br />
-:white_check_mark: Graphics: NVIDIA GTX 760 2GB DDR5 :warning: (should patch using geforce kepler)  <br /> 
-:white_check_mark: Ehernet I225-V Added Without Kext just adding on boot args "dk.e1000=0" without quotes<br /> 
-:white_check_mark: HDMI audio ( currently i'd use this,im use 3rd party focusrite 3rd ) <br />
-:white_check_mark: All USB <br />
-:white_check_mark: ThunderBolt <br />
+# System Specifications
 
+| Component | Model |
+|---|---|
+| **macOS Version** | macOS Sonoma 14.3.1 |
+| **Bootloader** | OpenCore 1.0.6 |
+| **Motherboard** | Gigabyte Z370 AORUS 2.0 |
+| **CPU** | Intel Core i7-8700K |
+| **RAM** | 32GB DDR4 3200MHz |
+| **GPU** | ASUS RX Vega 64 STRIX 8GB |
+| **Storage** | ADATA 256GB SSD |
+| **SMBIOS** | iMacPro19,1 (2019) |
 
-# List Tools We Need
+---
 
-1. [OCAuxiliaryTools](https://github.com/ic005k/OCAuxiliaryTools) - Initial configuration
-2. [Intel Power Gadget](https://github.com/trulyspinach/SMCAMDProcessor) - for monitoring amd ryzen
-3. [Geforce Kepler Patcher](https://github.com/chris1111/Geforce-Kepler-patcher) - for patching nvidia kepler
-4. [HackingTool by Headkaze](https://github.com/headkaze/Hackintool) - to verify settings on running macOS are fine; wasn't always working fine if `EFI` configuration had error on target machine
+# Working Features
 
+All core hardware has been tested and works properly.
 
-# Official Opencore
+| Feature | Status |
+|---|---|
+| macOS Sonoma 14.3.1 | ✅ Working |
+| CPU Power Management | ✅ Working |
+| GPU Acceleration | ✅ Native Fully Working |
+| USB Ports | ✅ Working |
+| Thunderbolt | ✅ Working |
+| Audio | ✅ Working |
 
-1. [OpenCore](https://dortania.github.io/OpenCore-Install-Guide/) - Opencore Official Website
+---
+
+# BIOS Settings
+
+Recommended BIOS settings before installing macOS.
+
+### Disable
+
+- VT-d *(unless using proper patches)*
+- Fast Boot
+- Secure Boot
+- CSM
+
+### Enable
+
+- XHCI Hand-off
+- Above 4G Decoding
+- EHCI/XHCI Hand-off
+- SATA Mode → **AHCI**
+
+---
+
+# Required Tools
+
+### OCAuxiliaryTools
+https://github.com/ic005k/OCAuxiliaryTools  
+
+Used to edit and manage **OpenCore config.plist**.
+
+### Intel Power Gadget
+https://github.com/trulyspinach/SMCAMDProcessor  
+
+Used for monitoring **CPU power usage and performance**.
+
+### Hackintool
+https://github.com/headkaze/Hackintool  
+
+Useful for verifying system configuration, USB mapping, and hardware status.
+
+---
+
+# OpenCore Guide
+
+Official documentation for OpenCore installation:
+
+https://dortania.github.io/OpenCore-Install-Guide/
+
+---
+
+# Kext List
+
+Main kexts used in this EFI:
+
+- Lilu.kext
+- VirtualSMC.kext
+- WhateverGreen.kext
+- AppleALC.kext
+- IntelMausi.kext
+- USBMap.kext
+
+Additional kexts may be included depending on configuration updates.
+
+---
+
+# EFI Folder Structure
+
+```
+EFI
+├── BOOT
+│   └── BOOTx64.efi
+│
+└── OC
+    ├── ACPI
+    ├── Drivers
+    ├── Kexts
+    ├── Resources
+    ├── Tools
+    └── config.plist
+```
+
+---
+
+# Notes
+
+- This EFI is **specifically configured for the hardware listed above**.
+- If your hardware differs, you may need to modify:
+  - **ACPI**
+  - **USB mapping**
+  - **config.plist**
+- Always generate your own **SMBIOS values** using **GenSMBIOS**.
+
+---
+
+# Disclaimer
+
+This repository is intended for **educational purposes only**.  
+Use it at your own risk. The author is not responsible for any hardware or software issues.
